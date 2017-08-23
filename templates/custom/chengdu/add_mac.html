@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 
 {% load staticfiles %}
-
+{% block head_script %}
+    <script src="{% static 'js/custom/chengdu/ajax.js' %}"></script>
+{% endblock %}
 {% block body_block %}
+<div align="center">
     <h1>Add mac address</h1>
     <p id="mac_file_val">
     </p>
     <p id="mac_val">
         <input id="mac" name="mac" placeholder="Mac Address：">
     </p>
-    <select class="form-control" onchange="selectOnchang(this)">
+    <select style="width:100px" class="form-control" onchange="selectOnchang(this)">
         <option value="single">single</option>
         <option value="multiple">multiple</option>
     </select>
@@ -19,4 +22,5 @@
         
     </div>
     <p><textarea style="width:500px;height:200px;" id="result" readonly="readonly"></textarea></p>
+</div>
 {% endblock %}

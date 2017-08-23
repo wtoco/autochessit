@@ -4,11 +4,49 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 import tratto.connectivity
 import tratto.systems
+from networktools.custom.chengdu.tools import *
 import os
 import re
 import sys
 import csv
 
+# Chengdu Catalogue
+@login_required
+def chengdu_catalogue(request):
+    return render(request, 'custom/chengdu/chengdu_catalogue.html')
+
+# Performance_monitoring view method
+@login_required
+def performance_monitoring(request):
+    if request.method == 'POST':
+        # 定义全局变量
+        global lists
+        lists = ['', '', '', '', '', '', '', '', '']
+        # total = 0
+        # 创建锁
+        # mutex = threading.Lock()
+        # 定义线程池
+        threads = []
+        # 创建线程对象
+        threads.append(ThreadImpl_per('10.85.123.1', '1000',0))
+        threads.append(ThreadImpl_per('10.85.120.201', '1000',1))
+        threads.append(ThreadImpl_per('10.192.8.138', '1000', 2))
+        threads.append(ThreadImpl_per('uc-emea1dir.myatos.net', '50', 3))
+        threads.append(ThreadImpl_per('10.85.119.213', '50', 4))
+        threads.append(ThreadImpl_per('10.85.119.210', '50', 5))
+        threads.append(ThreadImpl_per('10.85.119.212', '50', 6))
+        threads.append(ThreadImpl_per('phmnlgenb01.genesys.local', '50', 7))
+        threads.append(ThreadImpl_per('mykulgenb01.genesys.local', '50', 8))
+        # 启动线程
+        for t in threads:
+            t.start()
+            # 等待子线程结束
+        for t in threads:
+            t.join()
+        return JsonResponse(lists,safe=False)
+    return render(request, 'custom/chengdu/Performance Monitoring.html')
+
+# Add a Mac address to a single instance
 @login_required
 def add_mac(request):
     if request.method == 'POST':
@@ -52,10 +90,7 @@ def add_mac(request):
     else:
         return render(request, 'custom/chengdu/add_mac.html')
 
-@login_required
-def chengdu_catalogue(request):
-    return render(request, 'custom/chengdu/chengdu_catalogue.html')
-
+# Add a Mac address in file
 @login_required
 def add_mac_file(request):
     if request.method == 'POST':

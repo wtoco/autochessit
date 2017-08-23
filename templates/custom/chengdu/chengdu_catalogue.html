@@ -1,19 +1,30 @@
 {% extends 'base.html' %}
 
 {% load staticfiles %}
-
+{% block head_script %}
+    <script src="{% static 'js/custom/chengdu/ajax.js' %}"></script>
+{% endblock %}
 {% block body_block %}
+<div align="center">
     <h1>Chengdu Network Tools Catalogue</h1>
     <div>
         <table border="1">
           <tr>
-            <th><span>Feature</span></th>
-            <th style="width:400px;"><span>Description</span></th>
+            <th style="text-align:center;"><span>Feature</span></th>
+            <th style="text-align:center;width:400px;"><span>Description</span></th>
+            <th style="text-align:center;width:200px;"><span>Release</span></th>
+          </tr>
+          <tr>
+            <th><a href="/networktools/custom/chengdu/performance_monitoring/"><span>Performance Monitoring</span></a></th>
+            <th><span>description</span></th>
+            <th><span>Release</span></th>
           </tr>
           <tr>
             <th><a href="/networktools/custom/chengdu/add_mac/"><span>Add mac address</span></a></th>
             <th><span>description</span></th>
+            <th><span>Release</span></th>
           </tr>
         </table>
     </div>
+</div>
 {% endblock %}

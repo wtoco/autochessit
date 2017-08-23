@@ -72,7 +72,7 @@ DATABASES = {
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'NAME': 'autochessit',
         'USER': 'root',
-        'PASSWORD': 'dbpw1@Atos',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '3306',
     }

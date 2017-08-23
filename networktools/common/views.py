@@ -1,3 +1,4 @@
+from networktools.common.tools import *
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -7,10 +8,12 @@ import re
 import csv
 from time import ctime
 
+# Common function directory
 @login_required
 def common_catalogue(request):
     return render(request, 'common/common_catalogue.html')
 
+# Tcp single case test
 @login_required
 def tcp_easy_test(request):
     ip = None
@@ -18,9 +21,9 @@ def tcp_easy_test(request):
     if request.method == 'POST':
         ip = request.POST['ip']
         port = request.POST['port']
-        en0 = os.popen("nmap -sT " + ip + " -p " + port)
-        text = en0.read()
-        en0.close()
+        pipe = os.popen("nmap -sT " + ip + " -p " + port)
+        text = pipe.read()
+        pipe.close()
         data = ""
         data += "Tcp scanning host ipAddress:" + ip
         data += delete_useless_words(text)
@@ -28,6 +31,7 @@ def tcp_easy_test(request):
     else:
         return render(request, 'common/tcp_easy_test.html')
 
+# Udp single case test
 @login_required()
 def udp_easy_test(request):
     ip = None
@@ -35,9 +39,9 @@ def udp_easy_test(request):
     if request.method == 'POST':
         ip = request.POST['ip']
         port = request.POST['port']
-        en0 = os.popen("nmap -sU " + ip + " -p " + port)
-        text = en0.read()
-        en0.close()
+        pipe = os.popen("nmap -sU " + ip + " -p " + port)
+        text = pipe.read()
+        pipe.close()
         data = ""
         data += "Ucp scanning host ipAddress:" + ip
         data += delete_useless_words(text)
@@ -45,6 +49,7 @@ def udp_easy_test(request):
     else:
         return render(request, 'common/udp_easy_test.html')
 
+# Tcp multiple test
 @login_required
 def tcp_group_test(request):
     if request.method == 'POST':
@@ -78,15 +83,16 @@ def tcp_group_test(request):
             print("Tcp scanning host ipAddress:" + test[0],)
             for port in portLists:
                 data = data + port + ','
-            en0 = os.popen("nmap -sT " + test[0] + " -p " + data)
-            text = en0.read()
+            pipe = os.popen("nmap -sT " + test[0] + " -p " + data)
+            text = pipe.read()
             result = result + delete_useless_words(text)
-            en0.close()
+            pipe.close()
         ret = {'filepreview': filepreview, 'result': result}
         return JsonResponse(ret)
     else:
         return render(request, 'common/tcp_group_test.html', {})
 
+# Udp multiple test
 @login_required
 def udp_group_test(request):
     if request.method == 'POST':
@@ -120,17 +126,17 @@ def udp_group_test(request):
             print("Udp scanning host ipAddress:" + test[0],)
             for port in portLists:
                 data = data + port + ','
-            en0 = os.popen("nmap -sU " + test[0] + " -p " + data)
-            text = en0.read()
+            pipe = os.popen("nmap -sU " + test[0] + " -p " + data)
+            text = pipe.read()
             result = result + delete_useless_words(text)
-            en0.close()
-        ret = {'result': result}
+            pipe.close()
+        ret = {'filepreview': filepreview, 'result': result}
         return JsonResponse(ret)
     else:
         return render(request, 'common/udp_group_test.html', {})
 
 
-
+# ping&tracert to file
 @login_required
 def ping_tracrt_to_file(request):
     ip = None
@@ -148,43 +154,18 @@ def ping_tracrt_to_file(request):
     else:
         return render(request, 'common/ping_tracrt_to_file.html')
 
-############################## static method ##############################
-
-def delete_useless_words(text):
-    regex1 = re.compile(r'Starting.*CST')
-    result = regex1.sub('',text)
-    return result
-
-def readCsvFile(file):
-    lists = []
-    csvFile = open(file, "r")
-    reader = csv.reader(csvFile)  # 返回的是迭代类型
-    data = []
-    for item in reader:
-#        print(item[0]+":"+item[1])
-        data.append(item)
-    csvFile.close()
-    return data
-
-def ping(ip,file):
-    ipAddress = ip
-    ping_counts = "4"
-    shell = "ping "+ipAddress+" -c "+ping_counts
-    pipe = os.popen(shell)
-    text = pipe.read()
-    file.write(ctime())
-    file.write("\n"+text)
-    pipe.close()
-    return text
-
-def tracert(ip,file):
-    ipAddress = ip
-    tracetMaxTTL = "20"
-    tracetWaitingTime = "2"
-    shell = "traceroute -m "+tracetMaxTTL+" -w "+tracetWaitingTime+" "+ipAddress
-    pipe = os.popen(shell)
-    text = pipe.read()
-    file.write(ctime())
-    file.write("\n"+text)
-    pipe.close()
-    return text
+# test all ports
+@login_required
+def test_all_ports(request):
+    ip = None
+    if request.method == 'POST':
+        ip = request.POST['ip']
+        pipe = os.popen("nmap -open " + ip + " -p 1-65535")
+        text = pipe.read()
+        pipe.close()
+        data = ""
+        data += "scanning all ports of the host ipAddress:" + ip
+        data += delete_useless_words(text)
+        return HttpResponse(data)
+    else:
+        return render(request, 'common/test_all_ports.html')

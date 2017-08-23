@@ -1,34 +1,48 @@
 {% load static %}
 
-<nav>
-    <ul class="modern-menu theme2">
-        <li><a href="/"><span>HOME</span></a></li>
-        <li><a href="#"><span>ABOUT</span></a></li>
-        <li><a href="#"><span>Network Tools</span></a>
-            <ul>
-                <li>
-                    <a href="/networktools/common/common_catalogue/"><span>common</span></a>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header" style="width:150px;" align="center">
+        <img style="width:69px;height:49px;" src="{% static 'images/logo.png' %}">
+    </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="/"><span>HOME</span></a></li>
+                <li><a href="/about/"><span>ABOUT</span></a></li>
+
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Network Tools<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/networktools/common/common_catalogue/"><span>Common</span></a>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="javascript:;">Custom</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/networktools/custom/chengdu/chengdu_catalogue/"><spain>Chengdu</spain></a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="#"><span>custom</span></a>
-                    <ul>
-                        <li><a href="/networktools/custom/chengdu/chengdu_catalogue/"><span>chengdu</span></a></li>
+                    <a href="#"><span>Dashboard</span></a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {% if user.is_authenticated %}
+                            {{ user.username }}
+                        {% else %}
+                            MY
+                        {% endif %}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'auth_logout' %}?next=/"><span>LOGOUT</span></a></li>
                     </ul>
                 </li>
             </ul>
-        </li>
-        <li>
-            <a href="#"><span>Dashboard</span></a>
-        </li>
-        <li style="float:right;margin-right:100px;">
-            <a href="#"><span>MY</span></a>
-            <ul>
-                <li><a href="{% url 'auth_logout' %}?next=/"><span>LOGOUT</span></a> </li>
-            </ul>
-        </li>
-        <li style="float:right;">
-            <a href="#"><span>{{ user.username }}</span></a>
-        </li>
-    </ul>
+        </div>
+	</div>
 </nav>
 

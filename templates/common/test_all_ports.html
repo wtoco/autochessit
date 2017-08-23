@@ -4,10 +4,9 @@
 
 {% block body_block %}
 <div align="center">
-    <h1>Tcp Test</h1>
+    <h1>Test All Ports</h1>
     <p>Ip Address：<input id="ip" name="ip" placeholder="Ip Address："></p>
-    <p>Port：<input id="port" name="port" placeholder="port："></p>
-    <input type="button" value="start" onclick="tcp_easy_check(); ">
+    <input type="button" value="start" onclick="test_all_ports();">
     <p><textarea style="width:200px;height:200px;" id="test_msg" readonly="readonly"></textarea></p>
 </div>
 {% endblock %}

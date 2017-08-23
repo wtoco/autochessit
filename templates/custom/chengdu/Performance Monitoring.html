@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% block head_script %}
+    <script src="{% static 'js/custom/chengdu/ajax.js' %}"></script>
+{% endblock %}
+{% block body_block %}
+<div align="center">
+    <h1>Performance Monitoring</h1>
+    <input type="button" value="start" onclick="performance_monitoring()">
+    <span id="test_msg"></span>
+    <table border="1" id="performance_table">
+        <tr>
+            <th>Application</th>
+            <th>Location</th>
+            <th>IP/Hostname</th>
+            <th>Max Latency</th>
+            <th>Average Latency</th>
+            <th>Min Latency</th>
+            <th>Packet sent</th>
+            <th>Packet Received</th>
+            <th>Packet Loss Ratio</th>
+        </tr>
+        <tr>
+            <th>CORE GW</th>
+            <th>Chengdu Office</th>
+            <th>10.85.123.1</th>
+            <th id="cccc"></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>CT Leased line</th>
+            <th>Beijing Office</th>
+            <th>10.85.120.201</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>CU Leased line</th>
+            <th>Beijing Office</th>
+            <th>10.192.8.138</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>Lync server</th>
+            <th>Global</th>
+            <th>uc-emea1dir.myatos.net</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>Siemens OSCC Server(VM)</th>
+            <th>Beijing Office</th>
+            <th>10.85.119.213</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>EXSI</th>
+            <th>Beijing Office</th>
+            <th>10.85.119.210</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>Siemens Pro-center OpenSUSE</th>
+            <th>Beijing Office</th>
+            <th>10.85.119.212</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>Genesys server</th>
+            <th>Malaysia</th>
+            <th>phmnlgenb01.genesys.local</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>Genesys server</th>
+            <th>Malaysia</th>
+            <th>mykulgenb01.genesys.local</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </table>
+</div>
+{% endblock %}

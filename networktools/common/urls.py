@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^tcp_group_test/', views.tcp_group_test, name='tcp_group_test'),
     url(r'^udp_group_test/', views.udp_group_test, name='udp_group_test'),
     url(r'^ping_tracrt_to_file/', views.ping_tracrt_to_file, name='ping_tracrt_to_file'),
+    url(r'^test_all_ports/', views.test_all_ports, name='test_all_ports'),
 ]
