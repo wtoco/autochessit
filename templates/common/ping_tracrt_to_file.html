@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block body_block %}
+    <h1>Ping&Tracert Test</h1>
+    <p>Ip Address：<input id="ip" name="ip" ></p>
+    <input type="button" value="start" onclick="ping_tracert_check();">
+    <p><textarea style="width:400px;height:500px;" id="test_msg" readonly="readonly"></textarea></p>
+{% endblock %}

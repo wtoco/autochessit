@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block body_block %}
+    <h1>Add mac address</h1>
+    <p id="mac_file_val">
+    </p>
+    <p id="mac_val">
+        <input id="mac" name="mac" placeholder="Mac Address：">
+    </p>
+    <select class="form-control" onchange="selectOnchang(this)">
+        <option value="single">single</option>
+        <option value="multiple">multiple</option>
+    </select>
+    <input type="button" value="start" onclick="sub_mac();">
+    <p id="filepreview_val"></p>
+    <div id="failed">
+        
+    </div>
+    <p><textarea style="width:500px;height:200px;" id="result" readonly="readonly"></textarea></p>
+{% endblock %}

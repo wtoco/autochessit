@@ -1,0 +1,34 @@
+{% load static %}
+
+<nav>
+    <ul class="modern-menu theme2">
+        <li><a href="/"><span>HOME</span></a></li>
+        <li><a href="#"><span>ABOUT</span></a></li>
+        <li><a href="#"><span>Network Tools</span></a>
+            <ul>
+                <li>
+                    <a href="/networktools/common/common_catalogue/"><span>common</span></a>
+                </li>
+                <li>
+                    <a href="#"><span>custom</span></a>
+                    <ul>
+                        <li><a href="/networktools/custom/chengdu/chengdu_catalogue/"><span>chengdu</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#"><span>Dashboard</span></a>
+        </li>
+        <li style="float:right;margin-right:100px;">
+            <a href="#"><span>MY</span></a>
+            <ul>
+                <li><a href="{% url 'auth_logout' %}?next=/"><span>LOGOUT</span></a> </li>
+            </ul>
+        </li>
+        <li style="float:right;">
+            <a href="#"><span>{{ user.username }}</span></a>
+        </li>
+    </ul>
+</nav>
+

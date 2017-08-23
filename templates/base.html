@@ -1,0 +1,43 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    {% block head_style %}
+    <link href="{% static 'css/preview.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/modern-menu.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/load.css' %}" type="text/css" rel="stylesheet">
+    {% endblock %}
+    {% block head_script %}
+        <script src="{% static 'js/jquery-2.2.0.min.js' %}"></script>
+        <script src="{% static 'js/jquery.transit.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/jquery.modern-menu.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/ajax.js' %}"></script>
+        <script src="{% static 'js/load-min.js' %}"></script>
+
+    {% endblock %}
+</head>
+<body class="horizontal">
+{% include 'navbar.html' %}
+
+{% block body_block %}{% endblock %}
+
+<script type="text/javascript">$(".modern-menu").modernMenu();</script>
+{% block end_script %}{% endblock %}
+</body>
+{%block footer%}
+    <footer>
+        {% comment %}<div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; 2017 - xxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+            </div>
+        </div>{% endcomment %}
+    </footer>
+{% endblock %}
+</html>
+
+
+

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block body_block %}
+    <h1>Udp Test</h1>
+    <p>Ip Address：<input id="ip" name="ip" ></p>
+    <p>Port：<input id="port" name="port"></p>
+    <input type="button" value="start" onclick="udp_easy_check();">
+    <p><textarea style="width:200px;height:200px;" id="test_msg" readonly="readonly"></textarea></p>
+{% endblock %}

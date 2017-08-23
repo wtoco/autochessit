@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head_title %}upload{% endblock %}
+{% block body_block %}
+<h1>Tcp Multiple Test</h1>
+<form id="uploadForm">
+    <input name="datafile" id="datafile" type="file" onchange="jsReadFile(this.files)">
+    <button type="button" onclick="tcp_group_test()">start</button>
+</form>
+</br>
+<textarea id="filepreview" style="width: 1000px;height: 200px" readonly="readonly"></textarea>
+<textarea id="result" style="width: 1000px;height: 200px" readonly="readonly"></textarea>
+{% endblock %}
+

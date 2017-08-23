@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head_title %}upload{% endblock %}
+{% block body_block %}
+<h1>Udp Multiple Test</h1>
+<form id="uploadForm" name="form1">
+    <input name="datafile" id="datafile" type="file" >
+    <button type="button" onclick="udp_group_test()" >start</button>
+</form>
+</br>
+<textarea disabled="disabled" id="filepreview" style="width: 1000px;height: 200px" readonly="readonly"></textarea>
+<textarea disabled="disabled" id="result" style="width: 1000px;height: 200px" readonly="readonly"></textarea>
+{% endblock %}
